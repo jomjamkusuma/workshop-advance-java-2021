@@ -15,6 +15,6 @@ public class Hello {
 class UserDB{
 
     public String getNameByID(int id) {
-        return null;
+        throw new RuntimeException("DB Fail");
     }
 }
