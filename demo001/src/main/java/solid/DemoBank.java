@@ -8,14 +8,23 @@ package solid;
 
 public class DemoBank {
     public static void main(String[] args) {
-        BankAccount bankAccount = new BankAccount();
-        bankAccount.transferMoney(1000);
+        TransferMoneyProcess interBankAccount = new InterBankAccount();
+        TransferMoneyProcess localBankAccount = new LocalBankAccount();
+        interBankAccount.transferMoney(1000);
+        localBankAccount.transferMoney(2000);
 
     }
 
-    private static class BankAccount {
+    interface TransferMoneyProcess { void transferMoney(int amount); }
+
+    private static class InterBankAccount implements TransferMoneyProcess{
         public void transferMoney(int amount){
-            System.out.println("Transfer"+ amount);
+            System.out.println("Transfer International");
+        }
+    }
+    private static class LocalBankAccount implements TransferMoneyProcess {
+        public void transferMoney(int amount){
+            System.out.println("Transfer Local");
         }
     }
 }
