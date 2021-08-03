@@ -1,5 +1,6 @@
 package com.example.workshopdip;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,7 +12,7 @@ import java.util.Random;
 public class WorkshopDipApplication {
 
 	@Bean
-	public Random createMyRandom(){
+	public Random createMyRandom() {
 		return new Random();
 	}
 
@@ -20,6 +21,11 @@ public class WorkshopDipApplication {
 		ConfigurableApplicationContext context
 				= SpringApplication.run(WorkshopDipApplication.class, args);
 		System.out.println("Bean count=" + context.getBeanDefinitionCount());
+
+		GenerateIdService service
+				= context.getBean(GenerateIdService.class);
+		String id = service.get();
+		System.out.println("ID=" + id);
 	}
 
 }
